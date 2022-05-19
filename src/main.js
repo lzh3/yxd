@@ -10,17 +10,25 @@ import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 Vue.use(ElementUI);
 
+let token = localStorage.getItem("token");
 import axios from "axios";
+axios.defaults.baseURL = 'http://api.yldun.com:10089/';
+axios.defaults.headers.common['token'] = token;
+
+
 Vue.prototype.$axios = axios;
 
+
 router.beforeEach((to, from, next) => {
-  // to and from are both route objects. must call `next`.
-  let token = localStorage.getItem("token");
   console.log("token", token);
   console.log(from, to);
   if (token) {
     next();
   } else {
+    if( to.path === "/forget" || to.path==='/register'){
+      next();
+      return
+    }
     if (to.path !== "/login") {
       ElementUI.Message({
         type: "error",

@@ -4,7 +4,13 @@ Vue.use(VueRouter);
 
 const Admin = () => import("@/pages/admin");
 const Login = () => import("@/pages/login");
-const UserManage = () => import("@/pages/userManage");
+const ForgetPassword = () => import("@/pages/forgetPassword");
+const Register = () => import("@/pages/register");
+
+const Home  = ()=>import("@/pages/home");
+const ydApp = () => import("@/pages/ydApp");
+const Pay = () => import("@/pages/payBlock/pay");
+
 
 export const routes = [
   {
@@ -16,18 +22,46 @@ export const routes = [
   {
     path: "/admin",
     component: Admin,
-    redirect: "/admin/user",
+    redirect: "/admin/yd",
     children: [
       {
-        path: "/admin/user",
-        component: UserManage,
+        path: "/admin/yd",
+        component: ydApp,
       },
+      {
+        path: "/admin/home",
+        component: Home,
+      },
+      {
+        path: '/admin/payBlock',
+        redirect: '/admin/payBlock/pay',
+        children:[
+          {
+            path: '/pay',
+            component: Pay,
+          },
+          {
+            path: '/payRecord'
+          },
+          {
+            path: '/payOrder',
+          }
+        ],
+      }
     ],
   },
   {
     path: "/login",
     component: Login,
   },
+  {
+    path: '/forget',
+    component: ForgetPassword
+  },
+  {
+    path: '/register',
+    component: Register
+  }
 ];
 
 export default new VueRouter({

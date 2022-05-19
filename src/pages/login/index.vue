@@ -1,37 +1,26 @@
 <template>
-  <div class="login_page fillcontain">
-    <transition name="form-fade" mode="in-out">
-      <section class="form_contianer" v-show="showLogin">
-        <div class="manage_tip">
-          <p>elm后台管理系统</p>
-        </div>
-        <el-form :model="loginForm" :rules="rules" ref="loginForm">
-          <el-form-item prop="username">
-            <el-input v-model="loginForm.username" placeholder="用户名"
-              ><span>dsfsf</span></el-input
-            >
-          </el-form-item>
-          <el-form-item prop="password">
-            <el-input
-              type="password"
-              placeholder="密码"
-              v-model="loginForm.password"
-            ></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-button
-              type="primary"
-              @click="submitForm('loginForm')"
-              class="submit_btn"
-              >登录</el-button
-            >
-          </el-form-item>
-        </el-form>
-        <!-- <p class="tip">温馨提示：</p>
-        <p class="tip">未登录过的新用户，自动注册</p>
-        <p class="tip">注册过的用户可凭账号密码登录</p> -->
-      </section>
-    </transition>
+  <div class="login-wrapper">
+    <div class="login_page fillcontain">
+      <transition name="form-fade" mode="in-out">
+        <section class="form_contianer">
+          <div class="manage-title">登录账号</div>
+          <el-form :model="loginForm" :rules="rules" ref="loginForm">
+            <el-form-item prop="username">
+              <el-input v-model="loginForm.username" placeholder="用户名"><span>dsfsf</span></el-input>
+            </el-form-item>
+            <el-form-item prop="password" class="password-item">
+              <p class='forget-btn' @click="handleForget">忘记密码？</p>
+              <el-input type="password" placeholder="密码" v-model="loginForm.password"></el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" @click="submitForm('loginForm')" class="submit_btn">登录</el-button>
+            </el-form-item>
+          </el-form>
+
+          <div class="register-link" @click="handleRegister"> 还没有账号？立即注册> </div>
+        </section>
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -52,12 +41,10 @@ export default {
         ],
         password: [{ required: true, message: "请输入密码", trigger: "blur" }],
       },
-      showLogin: false,
     };
   },
   mounted() {
-      console.log('login页面')
-    this.showLogin = true;
+    console.log('login页面')
     // if (!this.adminInfo.id) {
     // 	this.getAdminData()
     // }
@@ -68,26 +55,26 @@ export default {
   methods: {
     // ...mapActions(['getAdminData']),
     async submitForm(formName) {
-        console.log('this.loginForm', this.loginForm)
+      console.log('this.loginForm', this.loginForm)
       this.$refs[formName].validate(async (valid) => {
         if (valid) {
-        //   const res = await login({
-        //     user_name: this.loginForm.username,
-        //     password: this.loginForm.password,
-        //   });
-        //   if (res.status == 1) {
-        //     this.$message({
-        //       type: "success",
-        //       message: "登录成功",
-        //     });
-        localStorage.setItem('token', this.loginForm.username)
-        this.$router.push("admin");
-        //   } else {
-        //     this.$message({
-        //       type: "error",
-        //       message: res.message,
-        //     });
-        //   }
+          //   const res = await login({
+          //     user_name: this.loginForm.username,
+          //     password: this.loginForm.password,
+          //   });
+          //   if (res.status == 1) {
+          //     this.$message({
+          //       type: "success",
+          //       message: "登录成功",
+          //     });
+          localStorage.setItem('token', this.loginForm.username)
+          this.$router.push("admin");
+          //   } else {
+          //     this.$message({
+          //       type: "error",
+          //       message: res.message,
+          //     });
+          //   }
         } else {
           this.$notify.error({
             title: "错误",
@@ -98,25 +85,58 @@ export default {
         }
       });
     },
+    handleForget() {
+      this.$router.push({ path: '/forget' })
+    },
+    handleRegister() {
+      this.$router.push({ path: '/register' })
+    }
+
+    // ================
   },
 };
 </script>
 
 <style scoped>
-.login_page {
-  background-color: #324057;
-  width: 360px;
-  margin: 100px auto;
-}
-.manage_tip {
-  position: absolute;
+.login-wrapper {
   width: 100%;
-  top: -100px;
-  left: 0;
+  height: 100vh;
+  padding-top: 220px;
+  box-sizing: border-box;
+  background-image: linear-gradient(to bottom, #2a80e6 0%, #15c0f3 100%);
 }
-.manage_tip p {
-  font-size: 34px;
-  color: #fff;
+.login_page {
+  /* background-color: #324057; */
+  width: 360px;
+  margin: 0 auto;
+}
+.manage-title {
+  font-size: 18px;
+  color: #777777;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.password-item {
+  position: relative;
+  margin-top: 30px;
+}
+.password-item .forget-btn {
+  position: absolute;
+  height: 20px;
+  font-size: 12px;
+  color: #337ab7;
+  right: 0;
+  top: -40px;
+  z-index: 99;
+  cursor: pointer;
+}
+.register-link {
+  font-size: 16px;
+  color: #337ab7;
+  /* line-height: 50px; */
+  padding-top: 25px;
+  border-top: 1px solid #ccc;
+  cursor: pointer;
 }
 .form_contianer {
   /* .wh(320px, 210px);
