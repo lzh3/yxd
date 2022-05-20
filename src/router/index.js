@@ -9,7 +9,10 @@ const Register = () => import("@/pages/register");
 
 const Home  = ()=>import("@/pages/home");
 const ydApp = () => import("@/pages/ydApp");
+const PayBlock = () => import("@/pages/payBlock");
 const Pay = () => import("@/pages/payBlock/pay");
+const PayRecord = () => import("@/pages/payBlock/record");
+const PayOrder = () => import("@/pages/payBlock/order");
 
 
 export const routes = [
@@ -34,17 +37,20 @@ export const routes = [
       },
       {
         path: '/admin/payBlock',
-        redirect: '/admin/payBlock/pay',
+        component: PayBlock,
+        // redirect: '/admin/payBlock/pay',
         children:[
           {
-            path: '/pay',
+            path: '/admin/payBlock/pay',
             component: Pay,
           },
           {
-            path: '/payRecord'
+            path: '/admin/payBlock/record',
+            component: PayRecord,
           },
           {
-            path: '/payOrder',
+            path: '/admin/payBlock/order',
+            component: PayOrder,
           }
         ],
       }

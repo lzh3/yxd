@@ -1,6 +1,6 @@
 <template>
   <div class="pay-box">
-    充值
+    订单
   </div>
 </template>
 <script>
@@ -11,7 +11,7 @@ export default {
     }
   },
   created(){
-      console.log('充值页面')
+      console.log('订单页面')
   },
 };
 </script>
