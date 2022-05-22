@@ -1,5 +1,6 @@
 <template>
     <div class="fillcontain">
+        <common-title title='应用列表'></common-title>
         <div class="table_container">
             <el-table :data="tableData" header-cell-class-name='table-header' style="width: 100%" size='small'>
                 <!-- <el-table-column type="index" width="100">
@@ -20,8 +21,10 @@
                 </el-table-column>
                 <el-table-column label="操作">
                     <template>
-                        <div>
-                            <el-link type="danger">删除</el-link>
+                        <div class="op-column">
+                            <el-link type="primary" @click="toSetting">配置</el-link>
+                            <el-link type="primary" @click='toPay(1)'>升级</el-link>
+                            <el-link type="primary" @click='toPay(2)'>续费</el-link>
                         </div>
                     </template>
                 </el-table-column>
@@ -71,6 +74,23 @@ export default {
         // this.initData();
     },
     methods: {
+        toSetting(type) {
+            // /admin/setting
+            this.$router.push({
+                path: '/admin/setting',
+                query: {
+                    type,
+                }
+            })
+        },
+        toPay(type) {
+            this.$router.push({
+                path: '/admin/upgrade',
+                query: {
+                    type,
+                },
+            })
+        },
         getUserList() {
             this.$axios()
         },
@@ -87,7 +107,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang='less' scoped>
 .table-header {
     height: 30px;
 }
@@ -97,5 +117,10 @@ export default {
 }
 .el-pagination {
     text-align: right;
+}
+/deep/.op-column {
+    .el-link {
+        margin-right: 5px;
+    }
 }
 </style>

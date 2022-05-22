@@ -10,14 +10,16 @@ import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 Vue.use(ElementUI);
 
+// 公共组件
+import CommonTitle from "./components/commonTitle";
+Vue.component("CommonTitle", CommonTitle);
+
 let token = localStorage.getItem("token");
 import axios from "axios";
-axios.defaults.baseURL = 'http://api.yldun.com:10089/';
-axios.defaults.headers.common['token'] = token;
-
+axios.defaults.baseURL = "http://api.yldun.com:10089/";
+axios.defaults.headers.common["token"] = token;
 
 Vue.prototype.$axios = axios;
-
 
 router.beforeEach((to, from, next) => {
   console.log("token", token);
@@ -25,15 +27,16 @@ router.beforeEach((to, from, next) => {
   if (token) {
     next();
   } else {
-    if( to.path === "/forget" || to.path==='/register'){
+    if (to.path === "/forget" || to.path === "/register") {
       next();
-      return
+      return;
     }
     if (to.path !== "/login") {
       ElementUI.Message({
         type: "error",
         message: "请登录！",
-      });``
+      });
+      ``;
       router.push({
         path: "login",
       });

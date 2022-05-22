@@ -7,13 +7,21 @@ const Login = () => import("@/pages/login");
 const ForgetPassword = () => import("@/pages/forgetPassword");
 const Register = () => import("@/pages/register");
 
-const Home  = ()=>import("@/pages/home");
+const Home = () => import("@/pages/home");
 const ydApp = () => import("@/pages/ydApp");
+// 云盾应用 配置
+const ydSetting = () => import("@/pages/ydSetting");
+// 升级
+const ydUpgrade = () => import("@/pages/ydUpgrade");
+// 充值付费
 const PayBlock = () => import("@/pages/payBlock");
 const Pay = () => import("@/pages/payBlock/pay");
 const PayRecord = () => import("@/pages/payBlock/record");
 const PayOrder = () => import("@/pages/payBlock/order");
-
+// 用户中心
+const UserCenter = () => import("@/pages/userCenter");
+const UserChange = () => import("@/pages/userCenter/changePassword");
+const UserInfo = () => import("@/pages/userCenter/userInfo");
 
 export const routes = [
   {
@@ -32,28 +40,50 @@ export const routes = [
         component: ydApp,
       },
       {
+        path: "/admin/setting",
+        component: ydSetting,
+      },
+      {
+        path: "/admin/upgrade",
+        component: ydUpgrade,
+      },
+      {
         path: "/admin/home",
         component: Home,
       },
       {
-        path: '/admin/payBlock',
+        path: "/admin/payBlock",
         component: PayBlock,
         // redirect: '/admin/payBlock/pay',
-        children:[
+        children: [
           {
-            path: '/admin/payBlock/pay',
+            path: "/admin/payBlock/pay",
             component: Pay,
           },
           {
-            path: '/admin/payBlock/record',
+            path: "/admin/payBlock/record",
             component: PayRecord,
           },
           {
-            path: '/admin/payBlock/order',
+            path: "/admin/payBlock/order",
             component: PayOrder,
-          }
+          },
         ],
-      }
+      },
+      {
+        path: "/admin/userCenter",
+        component: UserCenter,
+        children: [
+          {
+            path: "/admin/UserCenter/change",
+            component: UserChange,
+          },
+          {
+            path: "/admin/UserCenter/basic",
+            component: UserInfo,
+          },
+        ],
+      },
     ],
   },
   {
@@ -61,13 +91,13 @@ export const routes = [
     component: Login,
   },
   {
-    path: '/forget',
-    component: ForgetPassword
+    path: "/forget",
+    component: ForgetPassword,
   },
   {
-    path: '/register',
-    component: Register
-  }
+    path: "/register",
+    component: Register,
+  },
 ];
 
 export default new VueRouter({
