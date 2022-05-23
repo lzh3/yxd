@@ -33,6 +33,10 @@ export default {
     data() {
         return {};
     },
+    created() {
+        // getUserInfoAction
+        this.$store.dispatch('getUserInfoAction')
+    },
 };
 </script>
 

@@ -1,4 +1,4 @@
-const path = require("path");
+// const path = require("path");
 module.exports = {
   lintOnSave: false,
   // pluginOptions: {
@@ -21,4 +21,17 @@ module.exports = {
     }, // css预设器配置项
     modules: false, // 启用 CSS modules for all css / pre-processor files.
   },
+  // devServer: {
+  //   open: false,
+  //   proxy: {
+  //     //配置跨域
+  //     "/": {
+  //       target: "152.67.217.198:10089", //这里后台的地址模拟的;应该填写你们真实的后台接口
+  //       changeOrigin: true, //允许跨域
+  //       pathRewrite: {
+  //         "^/": "", //请求的时候使用这个api就可以
+  //       },
+  //     },
+  //   },
+  // },
 };
