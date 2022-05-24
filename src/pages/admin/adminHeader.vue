@@ -4,9 +4,9 @@
             <div class="logo"></div>
             <div class="userblock">
                 <i class="icon el-icon-warning-outline"></i>
-                <el-dropdown @command="loginOut">
+                <el-dropdown @command="loginOut" size="small">
                     <span class="el-dropdown-link">
-                        王五<i class="el-icon-arrow-down el-icon--right"></i>
+                        {{userinfo.user_name}}<i class="el-icon-arrow-down el-icon--right"></i>
                     </span>
                     <el-dropdown-menu slot="dropdown">
                         <el-dropdown-item>退出</el-dropdown-item>
@@ -21,8 +21,12 @@
 export default {
     data() {
         return {
-
+            userinfo: {}
         }
+    },
+    created(){
+        // console.log('userinfo header', this.$store.state.userInfo)
+        this.userinfo = this.$store.state.userInfo
     },
     methods: {
         loginOut() {

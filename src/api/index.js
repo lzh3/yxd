@@ -7,7 +7,29 @@ const registerAPI = baseURL + "/user/user-register/";
 const loginAPI = baseURL + "/user/user-login";
 // 查看玩家信息
 const userinfoAPI = baseURL + "/user/get-user-info/";
+// 修改玩家信息
+const changeUserinfoAPI = baseURL + "/user/patch-user-info/";
 // 修改密码
 const changePasswordAPI = baseURL + "/user/patch-password/";
 
-export { sendCodeAPI, registerAPI, loginAPI, userinfoAPI, changePasswordAPI };
+// 玩家充值记录
+const rechargeRecordAPI = baseURL + "/cash/recharge-record/";
+// 玩家订单
+const orderListAPI = baseURL + '/cash/order-list/'
+
+// 云盾应用
+// 应用列表
+const productListAPI = baseURL + '/product/product-list/'
+
+export {
+  sendCodeAPI,
+  rechargeRecordAPI,
+  registerAPI,
+  loginAPI,
+  userinfoAPI,
+  changePasswordAPI,
+  changeUserinfoAPI,
+  orderListAPI,
+  productListAPI,
+  
+};

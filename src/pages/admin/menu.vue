@@ -35,7 +35,7 @@ export default {
                 //   console.log('route', route)
                 this.defaultActive = route.path
 
-                if (route.path.includes('/upgrade')) {
+                if (route.path.includes('/upgrade') || route.path.includes('/admin/setting')) {
                     this.defaultActive = '/admin/yd'
                 }
             },

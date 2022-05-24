@@ -45,24 +45,25 @@ router.beforeEach((to, from, next) => {
   if (token) {
     next();
   } else {
-    if (
-      to.path === "/forget" ||
-      to.path === "/register" ||
-      to.path === "/login"
-    ) {
-      next();
-    } else {
-      router.push({
-        path: "/login",
-      });
-      setTimeout(() => {
-        ElementUI.Message({
-          type: "warning",
-          message: "请登录！",
-        });
-      });
-      return;
-    }
+    next();
+    // if (
+    //   to.path === "/forget" ||
+    //   to.path === "/register" ||
+    //   to.path === "/login"
+    // ) {
+    //   next();
+    // } else {
+    //   router.push({
+    //     path: "/login",
+    //   });
+    //   setTimeout(() => {
+    //     ElementUI.Message({
+    //       type: "error",
+    //       message: "请登录！",
+    //     });
+    //   });
+      // return;
+    // }
     // next();
   }
 });

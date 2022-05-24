@@ -2,14 +2,14 @@
     <div class="home">
         <section class="home-main">
             <div class="main-block">
-                <div class="block-header">你好，xxx</div>
+                <div class="block-header">个人信息</div>
                 <div class="phone main-item">
                     <span>手机号码</span>
-                    <span>14892394359</span>
+                    <span>{{userinfo.phone}}</span>
                 </div>
                 <div class="email main-item">
                     <span>电子邮箱</span>
-                    <span>12233423444@qq.com</span>
+                    <span>{{userinfo.mail}}</span>
                 </div>
             </div>
             <div class="main-block">
@@ -49,7 +49,9 @@
         </section>
         <section class="pay-block">
             <div class="pay-main">
-                账户余额： <span class="money">0元</span>
+                <div>
+                    账户余额： <span class="money">0元</span>
+                </div>
                 <el-button class="pay-btn" type="warning" size='medium'>立即充值</el-button>
                 <el-button type="primary" size='medium'>购买产品</el-button>
             </div>
@@ -60,18 +62,32 @@
 export default {
     data() {
         return {
-
+            userinfo: {},
         }
+    },
+    created(){
+        this.initUserinfo();
+    },
+    methods: {
+        initUserinfo(){
+            this.userinfo = this.$store.state.userInfo;
+        },
     },
 };
 </script>
 <style lang='less' scoped>
+.home{
+    // display: flex;
+}
 .home-main {
+    flex: 3;
+    // margin-right: 12px;
     display: flex;
     min-width: 820px;
     .main-block {
         flex: 1;
         height: 248px;
+        // margin-bottom: 12px;
         border: 1px solid #ddd;
         &:not(:last-child) {
             margin-right: 12px;
@@ -79,12 +95,16 @@ export default {
     }
 }
 .main-block {
+    box-sizing: border-box;
     .block-header {
         width: 100%;
         height: 140px;
         line-height: 140px;
         background-color: #aec785;
         text-align: center;
+        font-size: 28px;
+        font-weight: 500;
+        color: #eee;
     }
     .main-item {
         display: flex;
@@ -126,6 +146,7 @@ export default {
     }
 }
 .pay-block {
+    flex:2;
 }
 .pay-main {
     margin-top: 24px;
@@ -136,7 +157,7 @@ export default {
         color: #f80;
     }
     .pay-btn {
-        margin: 0 20px;
+        margin-right: 20px;
     }
 }
 </style>

@@ -21,7 +21,9 @@
                 </el-col>
                 <el-col :span="24">
                     <div class="grid-content bg-purple">
-                        <span>身份证：</span><span>{{userinfo.id_number || '--'}}</span>
+                        <span>身份证：</span>
+                        <span v-if='!isChange'>{{userinfo.id_number || '--'}}</span>
+                        <el-input size="small" v-else class="info-item" v-model="userinfo.id_number" placeholder="请输入身份证号码"></el-input>
                     </div>
                 </el-col>
                 <el-col :span="24">
@@ -65,7 +67,7 @@
     </div>
 </template> 
 <script>
-import { changePasswordAPI } from '@/api'
+import { changePasswordAPI, changeUserinfoAPI } from '@/api'
 
 export default {
     data() {
@@ -76,13 +78,13 @@ export default {
         }
     },
     mounted() {
-        this.handleUserInfo();
-        console.log('userinfo===', this.$store.state.userInfo)
+        this.initUserInfo();
+        // console.log('userinfo===', this.$store.state.userInfo)
         // console.log('userinfo---', localStorage.getItem('userInfo'))
         // localStorage.getItem('userInfo')
     },
     methods: {
-        handleUserInfo() {
+        initUserInfo() {
             this.userinfo = this.$store.state.userInfo;
         },
         // 修改
@@ -91,14 +93,20 @@ export default {
         },
         // 确认修改
         handleSure() {
-            this.$axios.post(changePasswordAPI, {
+            // let userinfo = localStorage.getItem('userInfo')
+            // console.log('确认修改', userinfo)
+            this.$axios.post(changeUserinfoAPI, {
                 "mail": this.userinfo.mail,
                 "qq": this.userinfo.qq,
                 "user_name": this.userinfo.user_name
             }).then(res => {
                 this.isChange = false;
                 if (res && res.data && res.data.errno === 0) {
-                    console.log('res', res.data)
+                    this.$store.dispatch('getUserInfoAction')
+                    this.$message({
+                        type: 'success',
+                        message: '修改成功'
+                    })
                 }
             })
         },

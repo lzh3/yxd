@@ -66,7 +66,7 @@ export default {
     padding: 20px;
 }
 .el-container {
-    height: 100vh;
+    min-height: calc(100vh - 60px);
     /* margin-bottom: 40px; */
 }
 

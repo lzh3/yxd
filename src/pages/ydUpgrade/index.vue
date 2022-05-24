@@ -2,14 +2,14 @@
     <div class="upgrade">
         <common-title :title='commonTitle'></common-title>
         <div class="form">
-            <el-form ref="form" :model="form" label-width="80px">
+            <el-form ref="form" :rules="rules" :model="form" label-width="80px">
                 <el-form-item label="应用名称">
                     <el-input v-model="form.app"></el-input>
                 </el-form-item>
                 <el-form-item label="线路">
                     <el-input v-model="form.line"></el-input>
                 </el-form-item>
-                <el-form-item label="到期时间">
+                <el-form-item label="到期时间" v-if='type!=0'>
                     <el-input v-model="form.deadline"></el-input>
                 </el-form-item>
                 <el-form-item label="套餐选择">
@@ -41,6 +41,8 @@
     </div>
 </template>
 <script>
+import {YDAPPTITLE} from '@/utils/enum'
+
 export default {
     data() {
         return {
@@ -48,6 +50,11 @@ export default {
                 duration: '1个月',
                 group: '',
                 type: ''
+            },
+            rules: {
+                app: [
+                    { required: true, message: "请输入应用名称", trigger: "blur" },
+                ],
             },
             typeOptions: [
                 {
@@ -66,17 +73,14 @@ export default {
                 }
             ],
 
-            commonTitle: '套餐升级'
+            type: 0,
+            commonTitle: '套餐升级',
         }
     },
     created() {
         console.log('rioute', this.$route.query)
-        let type = this.$route.query.type;
-        if (type == 1) {
-            this.commonTitle = '套餐升级'
-        } else {
-            this.commonTitle = '套餐续费'
-        }
+        this.type = this.$route.query.type;
+        this.commonTitle = YDAPPTITLE[this.type]
     },
     methods: {
         // 确认购买
