@@ -3,7 +3,7 @@
     <div class="header">
       <div class="logo"></div>
       <div class="userblock">
-        <el-tooltip class="item" effect="dark" content="未实名认证" placement="bottom">
+        <el-tooltip v-if='!userinfo.id_num' class="item" effect="dark" content="未实名认证" placement="bottom">
           <i class="icon el-icon-warning-outline"></i>
         </el-tooltip>
         <el-dropdown @command="loginOut" size="small">

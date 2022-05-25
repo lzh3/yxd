@@ -3,7 +3,7 @@
     <common-title title='应用列表'></common-title>
     <div class="op-btns">
       <el-button type="primary" size='small' @click="getAppList"> <i class="el-icon-refresh"></i> 刷新</el-button>
-      <el-button type="primary" size='small' @click="toPay(0)"> <i class="el-icon-circle-plus-outline"></i> 创建应用</el-button>
+      <el-button type="primary" size='small' @click="toPay(0, {})"> <i class="el-icon-circle-plus-outline"></i> 创建应用</el-button>
     </div>
     <div class="table_container">
       <el-table :data="tableData" border header-cell-class-name='table-header' style="width: 100%" size='small' v-loading="loading">
