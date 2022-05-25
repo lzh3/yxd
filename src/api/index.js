@@ -11,6 +11,7 @@ const userinfoAPI = baseURL + "/user/get-user-info/";
 const changeUserinfoAPI = baseURL + "/user/patch-user-info/";
 // 修改密码
 const changePasswordAPI = baseURL + "/user/patch-password/";
+// 实名认证 /user/upload-real-info/
 
 // 玩家充值记录
 const rechargeRecordAPI = baseURL + "/cash/recharge-record/";
@@ -28,6 +29,10 @@ const patchProductAPI = baseURL + '/product/patch-product/';
 const uploadFileAPI = baseURL +'/product/upload-app/'
 // 已上传的文件列表
 // /product/has-upload-file-list/
+const hasUploadFileListAPI = baseURL + '/product/has-upload-file-list/'
+// 下载文件
+const downFileAPI = baseURL+'/product/down-file/'
+
 
 
 export {
@@ -43,4 +48,6 @@ export {
   createProductAPI,
   patchProductAPI,
   uploadFileAPI,
+  hasUploadFileListAPI,
+  downFileAPI,
 };

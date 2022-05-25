@@ -60,14 +60,14 @@ export default {
         return {
             balance: 0, // 余额
             tableData: [
-                {
-                    orderId: '234545334356',
-                    time: '2016-05-04',
-                    money: '100',
-                    detail: '上海市普陀区金沙江路 1517 弄',
-                    remark: '备注：了坚实的李开复',
-                    status: 1,
-                },
+                // {
+                //     orderId: '234545334356',
+                //     time: '2016-05-04',
+                //     money: '100',
+                //     detail: '上海市普陀区金沙江路 1517 弄',
+                //     remark: '备注：了坚实的李开复',
+                //     status: 1,
+                // },
             ],
 
             // 分页

@@ -32,7 +32,7 @@ export const routes = [
   {
     path: "/",
     // component: Admin,
-    redirect: "/admin",
+    redirect: "/login",
     // children: [],
   },
   {

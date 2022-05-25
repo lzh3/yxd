@@ -56,8 +56,6 @@ export default {
     methods: {
         // ...mapActions(['getAdminData']),
         submitForm() {
-            this.$router.push("admin");
-            // return;
             this.$refs['loginForm'].validate(async (valid) => {
                 if (valid) {
                     this.$axios.post(loginAPI, {
@@ -67,14 +65,12 @@ export default {
                         console.log('res.data-login', res.data)
                         if (res && res.data.errno === 0) {
                             localStorage.setItem('token', res.data['user-token'])
-
                             this.$message({
                                 type: "success",
                                 message: "登录成功",
                             });
-                            this.$store.dispatch('getUserInfoAction')
                             this.$router.push({
-                                path: "/admin/home",
+                                path: "/admin",
                             });
                         }
                     })

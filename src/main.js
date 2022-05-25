@@ -36,37 +36,16 @@ axios.interceptors.request.use(
 );
 Vue.prototype.$axios = axios;
 
-router.beforeEach((to, from, next) => {
-  let token = localStorage.getItem("token");
-  console.log("===================");
-  console.log(from, to);
-  console.log("token", token);
-  console.log("===================");
-  if (token) {
-    next();
-  } else {
-    next();
-    // if (
-    //   to.path === "/forget" ||
-    //   to.path === "/register" ||
-    //   to.path === "/login"
-    // ) {
-    //   next();
-    // } else {
-    //   router.push({
-    //     path: "/login",
-    //   });
-    //   setTimeout(() => {
-    //     ElementUI.Message({
-    //       type: "error",
-    //       message: "请登录！",
-    //     });
-    //   });
-      // return;
-    // }
-    // next();
-  }
-});
+// router.beforeEach((to, from, next) => {
+//   let token = localStorage.getItem("token");
+//   let path = location.href;
+//   if(path.includes('/login')||path.includes('/register')||path.includes('/forget')){
+//     next()
+//     return;
+//   }
+//   console.log('出去了')
+//   next();
+// });
 
 // 全局filter
 Vue.filter("dateFormate", dateFormate);
