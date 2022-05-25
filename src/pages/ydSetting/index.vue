@@ -5,7 +5,7 @@
             <div class="server">
                 <div class="op-top">
                     <span>源服务器列表</span>
-                    <el-button type='explain' size='small'>添加源服务器</el-button>
+                    <el-button type='explain' size='small' @click="showServerDialog">添加源服务器</el-button>
                 </div>
                 <el-table :data="serverData" style="width: 100%">
                     <el-table-column prop="index" label="序号" width="180">
@@ -32,7 +32,7 @@
             <div class="server">
                 <div class="op-top">
                     <span>源程序列表</span>
-                    <el-button type='explain' size='small'>上传应用程序</el-button>
+                    <el-button type='explain' size='small' @click="showProgramDialog">上传应用程序</el-button>
                 </div>
                 <el-table :data="serverData" style="width: 100%">
                     <el-table-column prop="name" label="程序名称" width="180">
@@ -46,9 +46,9 @@
                     <el-table-column prop="time" label="上传时间">
                     </el-table-column>
                     <el-table-column prop="" label="操作">
-                        <template>
+                        <template slot-scope="scope">
                             <div>
-
+                                <el-link type='primary' @click="editApp(scope.row)">编辑</el-link>
                             </div>
                         </template>
                     </el-table-column>
@@ -61,9 +61,15 @@
                 </div>
             </div>
         </div>
+
+        <yd-server-dialog title='添加源服务器' :visible="serverDialog" @close="closeServerDialog"></yd-server-dialog>
+        <yd-program-dialog title='上传应用程序'  :visible="programDialog" @close='closeProgramDialog'></yd-program-dialog>
     </div>
 </template>
 <script>
+import ydServerDialog from './yd-server-dialog.vue'
+import ydProgramDialog from './yd-program-dialog.vue'
+
 export default {
     data() {
         return {
@@ -76,8 +82,32 @@ export default {
                     address: 'xxxxx'
                 }
             ],
+            serverDialog: false,
+            programDialog: false,
 
         }
+    }, 
+    components: {
+        ydServerDialog,
+        ydProgramDialog,
+    },
+    methods: {
+        editApp(row){
+
+        },
+        showServerDialog(){
+            this.serverDialog = true;
+        },
+        closeServerDialog(){
+            this.serverDialog = false
+        },
+
+        showProgramDialog(){
+            this.programDialog=true;
+        },
+        closeProgramDialog(){
+            this.programDialog = false;
+        },
     }
 }
 </script>

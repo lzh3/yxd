@@ -19,7 +19,16 @@ const orderListAPI = baseURL + '/cash/order-list/'
 
 // 云盾应用
 // 应用列表
-const productListAPI = baseURL + '/product/product-list/'
+const productListAPI = baseURL + '/product/product-list/';
+// 创建应用
+const createProductAPI = baseURL + '/product/create-product'
+// 编辑应用（升级/续费） 
+const patchProductAPI = baseURL + '/product/patch-product/';
+// 上传文件
+const uploadFileAPI = baseURL +'/product/upload-app/'
+// 已上传的文件列表
+// /product/has-upload-file-list/
+
 
 export {
   sendCodeAPI,
@@ -31,5 +40,7 @@ export {
   changeUserinfoAPI,
   orderListAPI,
   productListAPI,
-  
+  createProductAPI,
+  patchProductAPI,
+  uploadFileAPI,
 };
